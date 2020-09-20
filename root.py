@@ -17,5 +17,5 @@ def rickroll():
 @app.route('/db')
 def db():
     query = request.args.get('name', '')
-    return get_info(query)
+    return str(get_info(query))
 
