@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def root():
-    return render_template('root.html')
+    return render_template('google.html')
 
 
 @app.route('/redirect')
