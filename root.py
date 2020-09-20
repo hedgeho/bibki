@@ -1,11 +1,11 @@
-from flask import Flask, request
+from flask import Flask, request, render_template
 from database import get_info
 app = Flask(__name__)
 
 
 @app.route('/')
 def root():
-    return ''
+    return render_template('root.html')
 
 
 @app.route('/redirect')
