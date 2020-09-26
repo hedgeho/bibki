@@ -14,6 +14,11 @@ def rickroll():
 <meta http-equiv="refresh" content="1;URL=https://www.youtube.com/watch?v=dQw4w9WgXcQ" /></head>'
 
 
+@app.route('/search')
+def search():
+    pass
+
+
 @app.route('/db')
 def db():
     query = request.args.get('name', '')
