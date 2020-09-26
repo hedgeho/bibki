@@ -6,8 +6,32 @@ def get_conn():
      ***REMOVED***)
 
 
-def get_info(query):
+def get_info(query: str):
+    words = query.split(' ')
+    clazz1 = '%'
+    clazz2 = '%'
+    for word in words:
+        for ch in word:
+            if ch.isdigit():
+                if clazz1 != '%':
+                    if clazz2 != '%':
+                        return ()
+                    clazz2 = '%' + word + '%'
+                else:
+                    clazz1 = '%' + word + '%'
+                break
+    q = ['%', '%', '%']
+    if len(words) > 3 and clazz1 == '%' or len(words) > 4 and clazz2 == '%' or len(words) > 5:
+        return ()
+    else:
+        for i in range(len(words)):
+            if '%' + words[i] + '%' != clazz1 and '%' + words[i] + '%' != clazz2:
+                q[i] = '%' + words[i] + '%'
+    print('class:', clazz1, clazz2)
+    print(q)
     conn = get_conn()
     cursor = conn.cursor()
-    cursor.execute("select * from pool where last_name=%s", (query,))
+    cursor.execute("select * from pool where lower(fio) like lower(%s) "
+                   "and lower(fio) like lower(%s) and lower(fio) like lower(%s) and clazz like %s and clazz like %s",
+                   (q[0], q[1], q[2], clazz1, clazz2))
     return cursor.fetchall()

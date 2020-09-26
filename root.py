@@ -16,7 +16,9 @@ def rickroll():
 
 @app.route('/search')
 def search():
-    pass
+    query = request.args.get('q', '')
+    info = get_info(query)
+    return render_template('info.html', info=info)
 
 
 @app.route('/db')
