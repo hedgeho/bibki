@@ -1,5 +1,6 @@
 from flask import Flask, request, render_template
-from database import get_info
+from database import get_info, submit_query
+
 app = Flask(__name__)
 
 
@@ -17,6 +18,7 @@ def rickroll():
 @app.route('/search')
 def search():
     query = request.args.get('q', '')
+    submit_query(query)
     info = get_info(query)
     return render_template('info.html', info=info)
 

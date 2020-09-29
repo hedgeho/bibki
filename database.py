@@ -1,3 +1,5 @@
+from datetime import datetime
+
 import psycopg2
 
 
@@ -35,3 +37,11 @@ def get_info(query: str):
                    "and lower(fio) like lower(%s) and lower(fio) like lower(%s) and clazz like %s and clazz like %s",
                    (q[0], q[1], q[2], clazz1, clazz2))
     return cursor.fetchall()
+
+
+def submit_query(query: str):
+    conn = get_conn()
+    cursor = conn.cursor()
+    time = str(datetime.now())
+    cursor.execute("insert into history values (%s, %s)", (query, time))
+    conn.commit()
