@@ -7,7 +7,7 @@
 <body>
     {% for item in info %}
         <div>
-            <p>{{ item[2] }}: {{ item[8] }}</p>
+            <p>{{ item[2] }}: {{ item[8] }} {% if item[7] != '0' %} <a href="https://vk.com/id{{ item[7] }}">ВК</a> {% endif %}</p>
         </div>
     {% endfor %}
 </body>
