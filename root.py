@@ -4,6 +4,11 @@ from database import get_info, submit_query
 app = Flask(__name__)
 
 
+# todo доработать поиск (саня -> Александр; 11 1)
+# todo доработать майнер вк (понять, почему не все из нашего класса)
+# todo добавить placeholder (например, Эля 11)
+
+
 @app.route('/')
 def root():
     return render_template('google.html')
