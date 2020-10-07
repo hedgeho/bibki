@@ -18,7 +18,7 @@ def get_info(query: str):
                 if clazz1 != '%':
                     if clazz2 != '%':
                         return ()
-                    clazz2 = '%' + word + '%'
+                    clazz2 = '%' + word
                 else:
                     clazz1 = '%' + word + '%'
                 break
@@ -27,7 +27,7 @@ def get_info(query: str):
         return ()
     else:
         for i in range(len(words)):
-            if '%' + words[i] + '%' != clazz1 and '%' + words[i] + '%' != clazz2:
+            if '%' + words[i] + '%' != clazz1 and '%' + words[i] != clazz2:
                 q[i] = '%' + words[i] + '%'
     print('class:', clazz1, clazz2)
     print(q)
@@ -45,3 +45,9 @@ def submit_query(query: str):
     time = str(datetime.now())
     cursor.execute("insert into history values (%s, %s)", (query, time))
     conn.commit()
+
+
+def another_one():
+    conn = get_conn()
+    cursor = conn.cursor()
+
