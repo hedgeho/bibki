@@ -13,7 +13,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def root():
-    return render_template('google.html')
+    return render_template('monke.html')  # 'google.html')
 
 
 @app.route('/redirect')
