@@ -1,5 +1,5 @@
 from flask import Flask, request, render_template
-from database import get_info, submit_query
+from database import get_info, submit_query, submit_metric
 
 app = Flask(__name__)
 
@@ -13,6 +13,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def root():
+    submit_metric('/', request.remote_addr)
     return render_template('google.html')
 
 
