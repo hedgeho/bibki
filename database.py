@@ -51,7 +51,7 @@ def submit_metric(path: str, data: str, ip: str):
     conn = get_conn()
     cursor = conn.cursor()
     time = str(datetime.now())
-    cursor.execute("insert into metric values (%s, %s, %s, %s)", (path, time, ip, data))
+    cursor.execute("insert into metric values (%s, %s, %s, %s)", (path, ip, time, data))
     conn.commit()
 
 
