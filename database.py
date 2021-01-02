@@ -47,11 +47,11 @@ def submit_query(query: str):
     conn.commit()
 
 
-def submit_metric(path: str, ip: str):
+def submit_metric(path: str, data: str, ip: str):
     conn = get_conn()
     cursor = conn.cursor()
     time = str(datetime.now())
-    cursor.execute("insert into metric values (%s, %s, %s)", (path, ip, time))
+    cursor.execute("insert into metric values (%s, %s, %s, %s)", (path, time, ip, data))
     conn.commit()
 
 
