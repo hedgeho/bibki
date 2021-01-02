@@ -13,7 +13,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def root():
-    submit_metric('/', request.remote_addr)
+    submit_metric('/', request.environ['REMOTE_ADDR'])
     return render_template('google.html')
 
 
