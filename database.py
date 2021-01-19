@@ -8,10 +8,6 @@ def get_conn():
     return psycopg2.connect(os.environ['DB_CREDENTIALS'])
 
 
-# ***REMOVED***
-#      ***REMOVED***
-
-
 def get_info(query: str):
     words = query.split(' ')
     clazz1 = '%'
