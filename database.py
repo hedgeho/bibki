@@ -1,11 +1,15 @@
 from datetime import datetime
+import os
 
 import psycopg2
 
 
 def get_conn():
-    return psycopg2.connect(***REMOVED***
-     ***REMOVED***)
+    return psycopg2.connect(os.environ['DB_CREDENTIALS'])
+
+
+# ***REMOVED***
+#      ***REMOVED***
 
 
 def get_info(query: str):
