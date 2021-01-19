@@ -14,7 +14,8 @@ app = Flask(__name__)
 
 @app.route('/')
 def root():
-    submit_metric('/', '', request.environ['HTTP_X_FORWARDED_FOR'])
+    if 'HTTP_X_FORWARDED_FOR' in request.environ:
+        submit_metric('/', '', request.environ['HTTP_X_FORWARDED_FOR'])
     return render_template('google.html')
 
 
@@ -32,7 +33,8 @@ def rickroll():
 @app.route('/search')
 def search():
     query = request.args.get('q', '')
-    submit_metric('/search', query, request.environ['HTTP_X_FORWARDED_FOR'])
+    if 'HTTP_X_FORWARDED_FOR' in request.environ:
+        submit_metric('/search', query, request.environ['HTTP_X_FORWARDED_FOR'])
     info = get_info(query)
     return render_template('info.html', info=info)
 
