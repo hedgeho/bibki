@@ -26,8 +26,15 @@ def monke():
 
 @app.route('/redirect')
 def rickroll():
-    return '<head>\
-<meta http-equiv="refresh" content="1;URL=https://www.youtube.com/watch?v=dQw4w9WgXcQ" /></head>'
+    return '<head>' \
+           '<meta http-equiv="refresh" content="1;URL=https://www.youtube.com/watch?v=dQw4w9WgXcQ" /></head>'
+
+
+@app.route('/p')
+def presentation():
+    return '<head><meta http-equiv="refresh" ' \
+           'content="1;URL=https://docs.google.com/presentation/d/1hBoxRJPC31nk12AaGTJ-F8gJZUFmihTBkLWc2mfD7Jk/edit' \
+           '?usp=sharing" /></head> '
 
 
 @app.route('/search')
