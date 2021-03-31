@@ -16,7 +16,7 @@ app = Flask(__name__)
 def root():
     if 'HTTP_X_FORWARDED_FOR' in request.environ:
         submit_metric('/', '', request.environ['HTTP_X_FORWARDED_FOR'])
-    return render_template('google.html')
+    return render_template('google.html', matesha=100)
 
 
 @app.route('/monke')
