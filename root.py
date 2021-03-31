@@ -1,5 +1,6 @@
 from flask import Flask, request, render_template
 from database import get_info, submit_query, submit_metric
+from methods import calculate_math
 
 app = Flask(__name__)
 
@@ -16,7 +17,7 @@ app = Flask(__name__)
 def root():
     if 'HTTP_X_FORWARDED_FOR' in request.environ:
         submit_metric('/', '', request.environ['HTTP_X_FORWARDED_FOR'])
-    return render_template('google.html', matesha=100)
+    return render_template('google.html', matesha=calculate_math())
 
 
 @app.route('/monke')
