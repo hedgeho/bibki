@@ -34,7 +34,8 @@ def rickroll():
 @app.route('/p')
 def presentation():
     return '<head><meta http-equiv="refresh" ' \
-           'content="1;URL=https://docs.google.com/presentation/d/1fjiGn7r8yBI6Th8w07afhQSKWu_Fb8TEJ2CKE1uPFZI/edit' \
+           'content="1;' \
+           'URL=https://docs.google.com/presentation/d/1QRdGjsjxfOrV-vojznz5S79UQO1hDbysoZme2Cgyh2o/edit?usp=sharing' \
            '?usp=sharing" /></head> '
 
 
