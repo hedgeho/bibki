@@ -2,6 +2,7 @@ from datetime import datetime
 import os
 
 import psycopg2
+from flask import request, after_this_request
 
 
 def get_conn():
@@ -51,10 +52,20 @@ def submit_query(query: str):
 
 
 def submit_metric(path: str, data: str, ip: str):
+    cookie = request.cookies.get("biscuit")
     conn = get_conn()
     cursor = conn.cursor()
+    if cookie is None:
+        cursor.execute("select * from cookie_num")
+        cookie = cursor.fetchone()+1
+        cursor.execute("update * from cookie_num values (%s)", (cookie,))
+
+        @after_this_request
+        def set_cookie(response):
+            response.set_cookie('biscuit', cookie)
+            return response
     time = str(datetime.now())
-    cursor.execute("insert into metric values (%s, %s, %s, %s)", (path, ip, time, data))
+    cursor.execute("insert into metric values (%s, %s, %s, %s, %s)", (path, ip, time, data, cookie))
     conn.commit()
 
 
