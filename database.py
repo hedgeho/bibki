@@ -36,7 +36,10 @@ def get_info(query: str):
     cursor.execute("select * from pool where lower(fio) like lower(%s) "
                    "and lower(fio) like lower(%s) and lower(fio) like lower(%s) and clazz like %s and clazz like %s",
                    (q[0], q[1], q[2], clazz1, clazz2))
-    return cursor.fetchall()
+    ans = cursor.fetchall()
+    if len(ans) == 0:
+        return None
+    return ans
 
 
 def submit_query(query: str):

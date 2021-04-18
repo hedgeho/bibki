@@ -45,7 +45,7 @@ def search():
     if 'HTTP_X_FORWARDED_FOR' in request.environ:
         submit_metric('/search', query, request.environ['HTTP_X_FORWARDED_FOR'])
     info = get_info(query)
-    return render_template('info.html', info=info)
+    return render_template('info.html', info=info, query=query)
 
 
 @app.route('/db')
