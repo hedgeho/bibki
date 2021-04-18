@@ -2,7 +2,7 @@ from datetime import datetime
 import os
 
 import psycopg2
-from flask import request, after_this_request
+from flask import request, after_this_request, make_response
 
 
 def get_conn():
@@ -62,7 +62,7 @@ def submit_metric(path: str, data: str, ip: str):
 
         @after_this_request
         def set_cookie(response):
-            response.set_cookie('biscuit', cookie)
+            response.set_cookie('biscuit', str(cookie))
             return response
     time = str(datetime.now())
     cursor.execute("insert into metric values (%s, %s, %s, %s, %s)", (path, ip, time, data, cookie))
