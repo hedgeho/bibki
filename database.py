@@ -57,7 +57,7 @@ def submit_metric(path: str, data: str, ip: str):
     cursor = conn.cursor()
     if cookie is None:
         cursor.execute("select * from cookie_num")
-        cookie = cursor.fetchone()+1
+        cookie = cursor.fetchone()[0]+1
         cursor.execute("update * from cookie_num values (%s)", (cookie,))
 
         @after_this_request
