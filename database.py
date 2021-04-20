@@ -35,7 +35,8 @@ def get_info(query: str):
     conn = get_conn()
     cursor = conn.cursor()
     cursor.execute("select * from pool where lower(fio) like lower(%s) "
-                   "and lower(fio) like lower(%s) and lower(fio) like lower(%s) and clazz like %s and clazz like %s",
+                   "and lower(fio) like lower(%s) and lower(fio) like lower(%s) and clazz like %s and clazz like %s "
+                   "order by vk_id desc",
                    (q[0], q[1], q[2], clazz1, clazz2))
     ans = cursor.fetchall()
     if len(ans) == 0:
