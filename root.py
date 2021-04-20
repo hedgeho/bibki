@@ -10,7 +10,6 @@ app = Flask(__name__)
 # todo добавить placeholder (например, Эля 11)
 # todo цитаты мса
 # todo счетчик рикроллов
-# todo cookies
 
 
 @app.route('/')

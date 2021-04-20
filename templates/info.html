@@ -10,11 +10,23 @@
     {% if info == None %}
         <h4 style="margin-left: 5%">Ничего не нашлось :(</h4>
     {% else %}
+    <div class="card-columns mx-5" style="column-count: auto">
     {% for item in info %}
-        <div class="container-fluid" style="margin-left: 5%">
-            <p>{{ item[2] }}: {{ item[8] }} {% if item[7] != '0' %} <a href="https://vk.com/id{{ item[7] }}">ВК</a> {% endif %}</p>
+{#        <div class="container-fluid" style="margin-left: 5%">#}
+{#            <p>{{ item[2] }}: {{ item[8] }} {% if item[7] != '0' %} <a href="https://vk.com/id{{ item[7] }}">ВК</a> {% endif %}</p>#}
+{#        </div>#}
+      <div class="card mx-1" style="max-width: 10rem">
+      {% if item[9] != None %}
+        <img class="card-img-top" src="{{ item[9] }}" alt="photo">
+      {% endif %}
+        <div class="card-body" style="display: inline-block ">
+          <h5 class="card-title">{{ item[5] }} {{ item[3] }}</h5>
+          <p class="card-text">{{ item[8] }}</p>
+          {% if item[7] != '0' %}  <p class="card-text"><small class="text-muted"><a href="https://vk.com/id{{ item[7] }}">Ссылка на ВК</a></small></p>{% endif %}
         </div>
+      </div>
     {% endfor %}
+    </div>
     {% endif %}
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

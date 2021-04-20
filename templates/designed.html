@@ -15,14 +15,6 @@
     <title>Hello, world!</title>
 </head>
 <body>
-<ol class="list-group list-group-numbered w-25 mx-auto">
-    {% for student in leaders %}
-        <li class="list-group-item d-flex justify-content-between align-items-start">
-            <div class="ms-2 me-auto fw-bold">{{ student.name }}</div>
-            <h1><span class="badge bg-primary">{{ student.score }}</span></h1>
-        </li>
-    {% endfor %}
-</ol>
 
 {# math counter #}
 <div class="fullWidth eight columns">
