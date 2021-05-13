@@ -16,12 +16,12 @@ def get_info(query: str):
     for word in words:
         for ch in word:
             if ch.isdigit():
-                if clazz1 != '%':
+                if clazz1 == '%':
+                    clazz1 = '%' + word + '%'
+                else:
                     if clazz2 != '%':
                         return ()
                     clazz2 = '%' + word
-                else:
-                    clazz1 = '%' + word + '%'
                 break
     q = ['%', '%', '%']
     if len(words) > 3 and clazz1 == '%' or len(words) > 4 and clazz2 == '%' or len(words) > 5:
@@ -34,10 +34,13 @@ def get_info(query: str):
     print(q)
     conn = get_conn()
     cursor = conn.cursor()
-    cursor.execute("select * from pool where lower(fio) like lower(%s) "
-                   "and lower(fio) like lower(%s) and lower(fio) like lower(%s) and clazz like %s and clazz like %s "
-                   "order by vk_id desc",
-                   (q[0], q[1], q[2], clazz1, clazz2))
+    cursor.execute("select * from pool where "
+                   "(lower(first_name) like lower(%s) or lower(last_name) like lower(%s)) "
+                   "and (lower(first_name) like lower(%s) or lower(last_name) like lower(%s)) "
+                   "and (lower(first_name) like lower(%s) or lower(last_name) like lower(%s)) "
+                   "and clazz like %s and clazz like %s "
+                   "order by (case when vk_id IS NULL then 1 else 0 end), last_name, first_name",
+                   (q[0], q[0], q[1], q[1], q[2], q[2], clazz1, clazz2))
     ans = cursor.fetchall()
     if len(ans) == 0:
         return None
