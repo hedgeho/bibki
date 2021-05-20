@@ -77,3 +77,11 @@ def another_one():
     conn = get_conn()
     cursor = conn.cursor()
 
+
+def get_winners():
+    conn = get_conn()
+    cursor = conn.cursor()
+    cursor.execute("select * from winners")
+    return cursor.fetchall()
+
+

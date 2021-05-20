@@ -1,5 +1,6 @@
 from flask import Flask, request, render_template, abort, url_for, redirect
-from database import get_info, submit_query, submit_metric
+
+from database import get_info, submit_query, submit_metric, get_winners
 from methods import calculate_math
 
 app = Flask(__name__)
@@ -62,21 +63,36 @@ def game():
 @app.route('/check')
 def check():
     number = int(request.args.get('number', ''))
+    if 'HTTP_X_FORWARDED_FOR' in request.environ:
+        submit_metric('/', str(number), request.environ['HTTP_X_FORWARDED_FOR'])
 
-    return redirect(url_for('win'))
+    winners = get_winners()
+    print(winners)
+    if len(winners) == 0:
+        return redirect(url_for('wait'))
+    elif (number,) in winners:
+        return redirect(url_for('win'))
+    else:
+        return redirect(url_for('lose'))
 
 
 @app.route('/wait')
 def wait():
+    if 'HTTP_X_FORWARDED_FOR' in request.environ:
+        submit_metric('/', '', request.environ['HTTP_X_FORWARDED_FOR'])
     return render_template('wait.html')
 
 
 @app.route('/lose')
 def lose():
+    if 'HTTP_X_FORWARDED_FOR' in request.environ:
+        submit_metric('/', '', request.environ['HTTP_X_FORWARDED_FOR'])
     return render_template('lose.html')
 
 
 @app.route('/win')
 def win():
+    if 'HTTP_X_FORWARDED_FOR' in request.environ:
+        submit_metric('/', '', request.environ['HTTP_X_FORWARDED_FOR'])
     return render_template('win.html')
 
