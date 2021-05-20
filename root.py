@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 # todo доработать поиск
 # todo доработать майнер вк
-# todo добавить placeholder (например, Эля 11)
+# to.done? добавить placeholder (например, Эля 11)
 # todo цитаты мса
 # todo счетчик рикроллов
 
