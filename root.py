@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, abort, url_for, redirect
 from database import get_info, submit_query, submit_metric
 from methods import calculate_math
 
@@ -51,4 +51,32 @@ def search():
 def db():
     query = request.args.get('name', '')
     return str(get_info(query))
+
+
+# event 21/05
+@app.route('/game')
+def game():
+    return render_template('game.html')
+
+
+@app.route('/check')
+def check():
+    number = int(request.args.get('number', ''))
+
+    return redirect(url_for('win'))
+
+
+@app.route('/wait')
+def wait():
+    return render_template('wait.html')
+
+
+@app.route('/lose')
+def lose():
+    return render_template('lose.html')
+
+
+@app.route('/win')
+def win():
+    return render_template('win.html')
 
