@@ -57,6 +57,8 @@ def db():
 # event 21/05
 @app.route('/game')
 def game():
+    if 'HTTP_X_FORWARDED_FOR' in request.environ:
+        submit_metric('/game', '', request.environ['HTTP_X_FORWARDED_FOR'])
     return render_template('game.html')
 
 
@@ -64,7 +66,7 @@ def game():
 def check():
     number = int(request.args.get('number', ''))
     if 'HTTP_X_FORWARDED_FOR' in request.environ:
-        submit_metric('/', str(number), request.environ['HTTP_X_FORWARDED_FOR'])
+        submit_metric('/check', str(number), request.environ['HTTP_X_FORWARDED_FOR'])
 
     winners = get_winners()
     print(winners)
@@ -79,20 +81,20 @@ def check():
 @app.route('/wait')
 def wait():
     if 'HTTP_X_FORWARDED_FOR' in request.environ:
-        submit_metric('/', '', request.environ['HTTP_X_FORWARDED_FOR'])
+        submit_metric('/wait', '', request.environ['HTTP_X_FORWARDED_FOR'])
     return render_template('wait.html')
 
 
 @app.route('/lose')
 def lose():
     if 'HTTP_X_FORWARDED_FOR' in request.environ:
-        submit_metric('/', '', request.environ['HTTP_X_FORWARDED_FOR'])
+        submit_metric('/lose', '', request.environ['HTTP_X_FORWARDED_FOR'])
     return render_template('lose.html')
 
 
 @app.route('/win')
 def win():
     if 'HTTP_X_FORWARDED_FOR' in request.environ:
-        submit_metric('/', '', request.environ['HTTP_X_FORWARDED_FOR'])
+        submit_metric('/win', '', request.environ['HTTP_X_FORWARDED_FOR'])
     return render_template('win.html')
 
