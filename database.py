@@ -66,32 +66,7 @@ def get_info(query: str):
     if len(ans) == 0:
         return None
 
-    res = []
-    for student in ans:
-        cursor.execute('select distinct university, course from applications where user_id = %s', (student[0],))
-        apps = cursor.fetchall()
-        applications = []
-        for app in apps:
-            cursor.execute('select type, agreement from applications '
-                           'where user_id = %s and university = %s and course = %s',
-                           (student[0], app[0], app[1]))
-            app_type = ""
-            for type, agreement in cursor.fetchall():
-                app_type += type
-                if agreement:
-                    app_type += "[с согласием]"
-                app_type += ", "
-            app_type = app_type[0:-2]
-            a = list(app)
-            a.append(app_type)
-            applications.append(a)
-
-        res.append(list(student))
-        if len(applications) > 0:
-            res[-1].append(applications)
-        else:
-            res[-1].append(None)
-    return res
+    return ans
 
 
 def submit_query(query: str):
