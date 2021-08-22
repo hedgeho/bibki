@@ -23,7 +23,7 @@
           <h5 class="card-title">{{ item[5] }} {{ item[3] }}</h5>
           <p class="card-text">{{ item[8] }}</p>
         {% if item[11] != None %}
-            <p class="card-text">Поступил{% if item[6] == 1 %}а{% endif %} в {{ item[11] }} на направление {{ item[12] }}</p>
+            <p class="card-text">Поступил{% if item[6] == 0 %}а{% endif %} в {{ item[11] }} на направление {{ item[12] }}</p>
         {% endif %}
             {% if item[7] != None %}  <p class="card-text"><small class="text-muted"><a href="https://vk.com/id{{ item[7] }}">Ссылка на ВК</a></small></p>{% endif %}
         </div>

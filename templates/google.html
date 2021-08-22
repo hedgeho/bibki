@@ -285,7 +285,7 @@
         <div class="sfbg" style="margin-top:-20px">
             <div class="sfbgg"></div>
         </div>
-        <form class="tsf nj" action="/search" data-submitfalse="q" id="tsf" method="GET" name="f" role="search">
+        <form class="tsf nj" action="/search" onsubmit="kaboom()" data-submitfalse="q" id="tsf" method="GET" name="f" role="search">
             <div>
                 <div  class="A8SBwf">
                     <style>
@@ -548,7 +548,6 @@
                                 <div id="iknowyou">
                                     Я все про <a href="https://vk.com/id0">тебя</a> знаю
                                 </div>
-{#                                <img src="/static/vova.gif" alt="vova"/>#}
 
 {# math counter #}
 <div class="fullWidth eight columns">
@@ -556,6 +555,15 @@
     <a href="/win" type="button" class="btn btn-primary" style="color:#FFFFFF;">Выиграть</a>
     <a href="/lose" type="button" class="btn btn-primary" style="color:#FFFFFF;">Проиграть</a>
     </div>
+<img id="vova" src="/static/crocodile_static.gif" alt="vova" onclick="kaboom()"/>
+<script>
+    function kaboom() {
+        document.getElementById("vova").src = "/static/crocodile_boom.gif";
+        setTimeout(function () {
+            document.getElementById("vova").src = "/static/crocodile_static.gif";
+        }, 500)
+    }
+</script>
 {# math counter end #}
 <style type="text/css">
 
