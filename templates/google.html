@@ -559,6 +559,8 @@
 <script>
     function kaboom() {
         document.getElementById("vova").src = "/static/crocodile_boom.gif";
+        var audio = new Audio('/static/kaboom.mp3');
+        audio.play();
         setTimeout(function () {
             document.getElementById("vova").src = "/static/crocodile_static.gif";
         }, 500)
