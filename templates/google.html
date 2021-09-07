@@ -549,7 +549,6 @@
                                     Я все про <a href="https://vk.com/id0">тебя</a> знаю
                                 </div>
 
-{# math counter #}
 <div class="fullWidth eight columns">
     <a href="/wait" type="button" class="btn btn-primary" style="color:#FFFFFF;">Подождать</a>
     <a href="/win" type="button" class="btn btn-primary" style="color:#FFFFFF;">Выиграть</a>
@@ -566,7 +565,6 @@
         }, 500)
     }
 </script>
-{# math counter end #}
 <style type="text/css">
 
 .fullWidth {
@@ -655,34 +653,6 @@
 }
 
 </style>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script type="application/javascript">
-
-	$.fn.jQuerySimpleCounter = function (options) {
-        var settings = $.extend({
-            start: 0,
-            end: 100,
-            easing: 'swing',
-            duration: 400,
-            complete: ''
-        }, options);
-
-        var thisElement = $(this);
-
-        $({count: settings.start}).animate({count: settings.end}, {
-            duration: settings.duration,
-            easing: settings.easing,
-            step: function () {
-                var mathCount = Math.ceil(this.count);
-                thisElement.text(mathCount);
-            },
-            complete: settings.complete
-        });
-    };
-
-
-    $('#number1').jQuerySimpleCounter({end: {{ matesha }}, duration: 3000});
-</script>
                             </div>
                         </div>
                     </div>
