@@ -31,14 +31,6 @@ def rickroll():
            '<meta http-equiv="refresh" content="1;URL=https://www.youtube.com/watch?v=dQw4w9WgXcQ" /></head>'
 
 
-@app.route('/p')
-def presentation():
-    return '<head><meta http-equiv="refresh" ' \
-           'content="1;' \
-           'URL=https://docs.google.com/presentation/d/1QRdGjsjxfOrV-vojznz5S79UQO1hDbysoZme2Cgyh2o/edit?usp=sharing' \
-           '?usp=sharing" /></head> '
-
-
 @app.route('/search')
 def search():
     query = request.args.get('q', '')
